@@ -1,0 +1,97 @@
+.dropzone {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.toggleButton {
+  width: 200px;
+  /* height: 100%; */
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+.imageCollections {
+  width: 80vw;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.originalImage {
+  flex-grow: 1;
+  width: 100%;
+  height: 100%;
+  min-height: 20vw;
+  min-width: 50%;
+}
+.restoredImage {
+  flex-grow: 1;
+  width: 100%;
+  height: 100%;
+  align-self: center;
+}
+.loader {
+  flex-grow: 1;
+  width: 100%;
+  height: 100%;
+  align-self: center;
+  text-align: center;
+}
+.originalImage > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  margin-right: 20px;
+}
+.restoredImage > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  margin-left: 20px;
+}
+.compareImage {
+  padding-bottom: 50px;
+  max-width: 40%;
+}
+.buttons {
+  display: flex;
+}
+.buttons > button {
+  margin-top: 30px;
+  background-color: #000;
+  font-weight: 600;
+  font-size: 1.1em;
+  border: none;
+  color: #fff;
+  margin-right: -20px;
+  /* margin-left: 40px; */
+  padding: 7px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.buttons > button:hover {
+  background-color: #ebd4a1;
+  color: #000;
+  transition: 0.3s ease-in-out;
+}
+/* .spinner{
+  text-align: center;
+} */
+@media (max-width: 768px) {
+  .buttons {
+    padding-right: 20px;
+  }
+  .imageCollections {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  .restoredImage > img {
+    margin: 0px;
+  }
+  .compareImage {
+    max-width: 80%;
+  }
+}
