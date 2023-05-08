@@ -11,6 +11,8 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import CreditPlanCard from './components/creditPlanCard/CreditPlanCard';
 import MotionBlur from './components/motionBlur/MotionBlur'
+import Cookies from 'js-cookie';
+import jwt_decode from "jwt-decode";
 
 
 
@@ -27,8 +29,15 @@ function App() {
       const url = `${process.env.REACT_APP_API_URL}/auth/login/success`;
       const response = await fetch(url, { credentials: 'include', "content-Type": "text/html" });
       const data = await response.json();
+      const token = Cookies.get('x-auth-cookie');
+      console.log(token);
+      if(token){
+        const decodedToken = jwt_decode(token);
+        console.log(decodedToken);
+      }
       setIsAuthenticated(true);
-      setUser(data.user._json);
+
+      setUser(data.user._json );
     } catch (err) {
       setIsAuthenticated(false);
     }
