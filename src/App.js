@@ -31,13 +31,11 @@ function App() {
       const data = await response.json();
       const token = Cookies.get('x-auth-cookie');
       console.log(token);
-      if(token){
-        const decodedToken = jwt_decode(token);
-        console.log(decodedToken);
-      }
+      const decodedToken = jwt_decode(token);
+      console.log(decodedToken);
+      setUser(decodedToken);
       setIsAuthenticated(true);
 
-      setUser(data.user._json );
     } catch (err) {
       setIsAuthenticated(false);
     }
@@ -46,6 +44,7 @@ function App() {
     if (!loginGoogle) getUser();
   }, [loginGoogle]);
   const [open, setOpen] = React.useState(false);
+  console.log(user);
   return (
     <>
       <div className="App">
