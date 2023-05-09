@@ -30,16 +30,22 @@ function App() {
   const getUser = async () => {
     try {
       const url = `${process.env.REACT_APP_API_URL}/auth/login/success`;
-      const response = await fetch(url, { credentials: 'include', "content-Type": "text/html" });
-      console.log(response);
+
+      const response = await fetch(url, {
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+      });
+      // console.log(response);
       const data = await response.json();
-      const token = Cookies.get('x-auth-cookie');
-      console.log(token);
-      const decodedToken = jwt_decode(token);
-      console.log(decodedToken);
-      setUser(decodedToken);
-      setIsAuthenticated(true);
       console.log(data);
+      // const token = Cookies.get('x-auth-cookie');
+      // console.log(token);
+      // const decodedToken = jwt_decode(token);
+      // console.log(decodedToken);
+      // setUser(decodedToken);
+      setUser(data.user);
+      setIsAuthenticated(true);
+
 
     } catch (err) {
       setIsAuthenticated(false);
