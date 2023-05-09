@@ -8,8 +8,14 @@ import RestoredMotionBlurImage from '../../assets/RestoredMotionBlurImage.png'
 import { ReactCompareSlider, ReactCompareSliderImage } from "react-compare-slider";
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 import { Icon } from '@mui/material';
+import Cookies from 'js-cookie';
 
 function LandingPage({ setOpen, open }) {
+
+
+
+  // Cookies.get('x-auth-cookie');
+  console.log(Cookies.get('x-auth-cookie'));
 
   const handleClickOpen = () => {
     setOpen(true);

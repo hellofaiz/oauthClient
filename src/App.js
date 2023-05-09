@@ -28,6 +28,7 @@ function App() {
     try {
       const url = `${process.env.REACT_APP_API_URL}/auth/login/success`;
       const response = await fetch(url, { credentials: 'include', "content-Type": "text/html" });
+      console.log(response);
       const data = await response.json();
       const token = Cookies.get('x-auth-cookie');
       console.log(token);
@@ -35,6 +36,7 @@ function App() {
       console.log(decodedToken);
       setUser(decodedToken);
       setIsAuthenticated(true);
+      console.log(data);
 
     } catch (err) {
       setIsAuthenticated(false);
@@ -43,6 +45,13 @@ function App() {
   useEffect(() => {
     if (!loginGoogle) getUser();
   }, [loginGoogle]);
+
+
+
+
+
+
+
   const [open, setOpen] = React.useState(false);
   console.log(user);
   return (
@@ -94,6 +103,7 @@ function App() {
           }
         </Routes>
       </div>
+
     </>
   );
 }
