@@ -18,54 +18,59 @@ import jwt_decode from "jwt-decode";
 
 function App() {
   const [user, setUser] = useState(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [loginGoogle, setLogginGoogle] = useState()
-  const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up('md'));
-
-
-  Cookies.get('x-auth-cookie');
-  console.log(Cookies.get('x-auth-cookie'));
+  // const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // const [loginGoogle, setLogginGoogle] = useState()
+  // const theme = useTheme();
+  // const matches = useMediaQuery(theme.breakpoints.up('md'));
+  // Cookies.get('x-auth-cookie');
+  // console.log(Cookies.get('x-auth-cookie'));
 
   const getUser = async () => {
     try {
       const url = `${process.env.REACT_APP_API_URL}/auth/login/success`;
 
       const response = await fetch(url, {
-        credentials: 'include',
-        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include', 'Content-Type': 'text/html'
       });
       // console.log(response);
       const data = await response.json();
       console.log(data);
+      setUser(data.user);
       // const token = Cookies.get('x-auth-cookie');
       // console.log(token);
       // const decodedToken = jwt_decode(token);
       // console.log(decodedToken);
       // setUser(decodedToken);
-      setUser(data.user);
-      setIsAuthenticated(true);
-
-
+      // setUser(data.user);
+      // setIsAuthenticated(true);
     } catch (err) {
-      setIsAuthenticated(false);
+      // setIsAuthenticated(false);
+      console.log(err);
     }
   };
-  useEffect(() => {
-    if (!loginGoogle) getUser();
-  }, [loginGoogle]);
+  useEffect(() => { 
+    getUser();
+  }, []);
+  // getUser();
+
+  // useEffect(() => {
+  //   if (!loginGoogle) getUser();
+  // }, [loginGoogle]);
 
 
 
+  const googleAuth = () => {
+    window.open(`${process.env.REACT_APP_API_URL}/auth/google/callback`, '_self');
+    // setLoginGoogle(true)
+  }
 
 
 
-
-  const [open, setOpen] = React.useState(false);
+  // const [open, setOpen] = React.useState(false);
   console.log(user);
   return (
     <>
-      <div className="App">
+      {/* <div className="App">
         <Navbar open={open} setOpen={setOpen} user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} isAuthenticated={isAuthenticated} />
         <DiologueBox open={open} setOpen={setOpen} user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} />
         <Routes>
@@ -111,8 +116,21 @@ function App() {
             />
           }
         </Routes>
-      </div>
+      </div> */}
+      <div className="demo">
 
+
+
+        {
+          user ? <h1>Welcome to the app</h1> :
+            <button onClick={googleAuth}>
+              {/* <img src={googleLogo} style={{ marginLeft: '-40px', width: '5rem', height: '4rem' }} alt="Google Logo" /> */}
+              <span><p> Sign in With Google</p></span>
+            </button>
+
+        }
+
+      </div>
     </>
   );
 }
