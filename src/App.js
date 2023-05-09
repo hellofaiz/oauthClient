@@ -24,6 +24,9 @@ function App() {
   const matches = useMediaQuery(theme.breakpoints.up('md'));
 
 
+  Cookies.get('x-auth-cookie');
+  console.log(Cookies.get('x-auth-cookie'));
+
   const getUser = async () => {
     try {
       const url = `${process.env.REACT_APP_API_URL}/auth/login/success`;
