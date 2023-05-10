@@ -13,7 +13,7 @@ import CreditPlanCard from './components/creditPlanCard/CreditPlanCard';
 import MotionBlur from './components/motionBlur/MotionBlur'
 import Cookies from 'js-cookie';
 import jwt_decode from "jwt-decode";
-
+import axios from 'axios';
 
 
 function App() {
@@ -29,13 +29,14 @@ function App() {
     try {
       const url = `${process.env.REACT_APP_API_URL}/auth/login/success`;
 
-      const response = await fetch(url, {
-        credentials: 'include', 'Content-Type': 'text/html'
+      const response = await axios(url, {
+        headers: {'X-Requested-With': 'XMLHttpRequest'},
+        withCredentials: true,
       });
       // console.log(response);
-      const data = await response.json();
-      console.log(data);
-      setUser(data.user);
+      // const data = await response.json();
+      console.log(response);
+      setUser(response.data.user);
       // const token = Cookies.get('x-auth-cookie');
       // console.log(token);
       // const decodedToken = jwt_decode(token);
