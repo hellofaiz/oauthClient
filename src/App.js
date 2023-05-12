@@ -27,13 +27,13 @@ function App() {
 
   const getUser = async () => {
     try {
-      const url = `${process.env.REACT_APP_API_URL}/auth/login/success`;
+      const url = `${process.env.REACT_APP_API_URL}/auth/api/user`;
 
       const response = await axios(url, {
         headers: {'X-Requested-With': 'XMLHttpRequest'},
         withCredentials: true,
       });
-      // console.log(response);
+      console.log(response);
       // const data = await response.json();
       console.log(response);
       setUser(response.data.user);
@@ -61,7 +61,7 @@ function App() {
 
 
   const googleAuth = () => {
-    window.open(`${process.env.REACT_APP_API_URL}/auth/google/callback`, '_self');
+    window.open(`${process.env.REACT_APP_API_URL}/auth/google`, '_self');
     // setLoginGoogle(true)
   }
 
